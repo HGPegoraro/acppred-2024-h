@@ -2,5 +2,6 @@ name: acppred
 dependencies:
   - python=3.8
   - pip
+  - jupyter
   - pip:
     - -r requirements.txt
