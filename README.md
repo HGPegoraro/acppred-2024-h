@@ -6,7 +6,7 @@ Anticancer Peptide Prediction Software
 
 ## Setup
 
-To install the accpred program, run the following command:
+To install the acppred program, run the following command:
 (Mamba is required)
 
 ```
