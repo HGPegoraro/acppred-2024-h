@@ -1,5 +1,6 @@
 from acppred.preprocess import compute_aa_composition
 from acppred.models import Model
+from argparse import ArgumentParser
 import pandas as pd
 
 def predict_anticancer_peptide(peptide:str, model:str='data/models/model.pickle') -> float:
@@ -26,8 +27,16 @@ def predict_anticancer_peptide(peptide:str, model:str='data/models/model.pickle'
     probability = model.predict_proba(df_input)[0][1]
     return probability
 
-if __name__ == '__main__':
-    peptide = input("Peptide sequence:")
-    print(predict_anticancer_peptide(peptide))
+def main():
+    argument_parser = ArgumentParser()
+    argument_parser.add_argument('model', help='Pre-trained classification model')
+    argument_parser.add_argument('peptide', help='Sequence of the peptide to be analyzed')
+    arguments = argument_parser.parse_args()
 
+    probability = predict_anticancer_peptide(arguments.peptide, arguments.model)
+    print(arguments.peptide, probability, sep='\t')
+
+if __name__ == '__main__':
+    main()
+    
 

@@ -2,6 +2,7 @@
 
 
 from Bio.SeqUtils import ProtParam
+from argparse import ArgumentParser
 import pandas as pd
 
 def compute_aa_composition(peptide:str) -> dict: 
@@ -55,13 +56,25 @@ def preprocess_datasets(positive_peptide_file:str, negative_peptide_file:str, ou
     df_processed = pd.DataFrame(rows)
     df_processed.to_csv(output_file, index=False)
 
-if __name__ == '__main__':
+def main():
+    
+    argument_parser = ArgumentParser()
+    argument_parser.add_argument('input_directory', help="Directory containing the input files.")
+    argument_parser.add_argument('output_directory', help="Directory to save the preprocessed peptide data.")
+    arguments = argument_parser.parse_args()
+
     preprocess_datasets(
-        'data/raw/train_positive.txt',
-        'data/raw/train_negative.txt'
+        f'{arguments.input_directory}/train_positive.txt',
+        f'{arguments.input_directory}/train_negative.txt',
+        output_file=f'{arguments.input_directory}/train.csv'
     )
     preprocess_datasets(
-        'data/raw/test_positive.txt',
-        'data/raw/test_negative.txt',
-        output_file='data/processed/test.csv'
-        )
+        f'{arguments.input_directory}/test_positive.txt',
+        f'{arguments.input_directory}/test_negative.txt',
+        output_file=f'{arguments.input_directory}/test.csv'
+     )
+
+if __name__ == '__main__':
+    main()    
+   
+   

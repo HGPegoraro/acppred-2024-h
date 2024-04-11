@@ -6,11 +6,11 @@ dirs:
 
 preprocess:
 	echo "Running Data Preprocessing"
-	python acppred/preprocess.py
+	acppred-preprocess data/raw data/processed
 
 train: dirs
 	echo "Running Model Training"
-	python acppred/train.py 
+	acppred-train data/processed/ data/models/model.pickle
 
 all: preprocess train
 
