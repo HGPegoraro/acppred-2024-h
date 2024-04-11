@@ -6,6 +6,13 @@ setup(
     packages=find_packages(),
     author="Henrique Gonçalves Pegoraro",
     author_email="henrique.pegoraro2@gmail.com",
-    description="Anticancer Peptide Prediction tool"
+    description="Anticancer Peptide Prediction tool",
+    entry_points = {
+        'console_scripts': [
+            'acppred-preprocess = acppred.preprocess:main',
+            'acppred-train = acppred.train:main',
+            'acppred-predict = acppred.predict:main'
+        ]
+    }
 )
 
