@@ -11,7 +11,8 @@ setup(
         'console_scripts': [
             'acppred-preprocess = acppred.preprocess:main',
             'acppred-train = acppred.train:main',
-            'acppred-predict = acppred.predict:main'
+            'acppred-predict = acppred.predict:main',
+            'acppred-server = acppred.server:main'
         ]
     }
 )
